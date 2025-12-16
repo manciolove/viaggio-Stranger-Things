@@ -388,7 +388,7 @@ namespace gioco_stranger_things
 
                     if (gioco == false)
                     {
-                        break;
+                        return;
                     }
 
 
