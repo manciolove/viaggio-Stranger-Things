@@ -258,7 +258,6 @@ namespace gioco_stranger_things
                 Console.WriteLine("##                   Vecna                          ##");
                 Console.WriteLine("######################################################");
                 Console.WriteLine("");
-                Console.WriteLine("string creature = @\"");
                 Console.WriteLine("            .|||||||:::.         ");
                 Console.WriteLine("         /|||||||||||||||\\       ");
                 Console.WriteLine("       / /||@ @ @ @ @||\\ \\      ");
@@ -276,7 +275,6 @@ namespace gioco_stranger_things
                 Console.WriteLine("       // /| | | | | |\\ \\\\       ");
                 Console.WriteLine("      // /  | | | | |  \\ \\\\      ");
                 Console.WriteLine("\";");
-                Console.WriteLine("Console.WriteLine(creature);");
                 Console.WriteLine("");
                 Console.WriteLine("######################################################");
                 //condizione vittoria contro Vecna
