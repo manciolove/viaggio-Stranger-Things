@@ -11,10 +11,12 @@ namespace gioco_stranger_things
         // funzione dado
         static int TiroDado(int posizione)
         {
+            // primo tiro
             if (posizione == 0)
             {
                 return r.Next(1, 5);
             }
+            // altri tiri 
             else
             {
                 return r.Next(1, 7);
@@ -48,7 +50,8 @@ namespace gioco_stranger_things
             int dannoGiocatore;
 
             Console.WriteLine("un Demogorgone emerge dall'ombra, i suoi occhi neri ti fissano senza pietà.");
-            Console.WriteLine("Tu stringi i denti, pronto a difenderti.");
+            Console.WriteLine("tu stringi i denti, pronto a difenderti");
+            // muori perche non hai vita e resistenza
             if (vita <= 50 && resistenza < 20)
             {
                 Console.WriteLine("oh nooo!!");
@@ -58,6 +61,7 @@ namespace gioco_stranger_things
                 return false;
 
             }
+            // scappa perche non hai vita
             else if (vita <= 50 && resistenza >= 20)
             {
                 Console.WriteLine("non hai abbastanza vita, devi scappare");
@@ -70,6 +74,7 @@ namespace gioco_stranger_things
             Console.WriteLine("combatti contro il demogorgone");
             Console.WriteLine("Demogorgone: ora morirai");
             Console.WriteLine("Tu: non ne sono sicuro");
+            // ciclo combattimento
             while (vita > 0 && vitaDemo > 0)
             {
 
@@ -77,6 +82,7 @@ namespace gioco_stranger_things
                 string scelta = Console.ReadLine();
                 if (scelta == "no")
                 {
+                    // scappa con resistenza 
                     if (resistenza >= 20)
                     {
                         Console.WriteLine("sei scappato!");
@@ -84,6 +90,7 @@ namespace gioco_stranger_things
                         resistenza = resistenza - 10;
                         return true;
                     }
+                    // scappa ma non hai resistenza, quindi muori
                     else
                     {
                         Console.WriteLine("non hai abbastanza resistenza per scappare, muori!");
@@ -93,7 +100,7 @@ namespace gioco_stranger_things
                     }
                 }
 
-
+                // attacco  con arma
                 if (armi > 0)
                 {
                     dannoGiocatore = 25;
@@ -101,6 +108,7 @@ namespace gioco_stranger_things
                     Console.WriteLine("Tu: prendi questo!");
                     Console.WriteLine("Demogorgone: GRAAAAAHHHHH!!");
                 }
+                // colpo a mani nude
                 else
                 {
                     dannoGiocatore = 10;
@@ -111,7 +119,7 @@ namespace gioco_stranger_things
                 vitaDemo = vitaDemo - dannoGiocatore;
                 Console.WriteLine("vita demogorgone: " + vitaDemo);
 
-
+                // attacco demogorgone
                 vita = vita - 10;
                 resistenza = resistenza - 5;
                 Console.WriteLine("il demogorgone ti ha colpito ");
@@ -121,7 +129,7 @@ namespace gioco_stranger_things
 
                 Console.WriteLine("vita: " + vita + " resistenza: " + resistenza);
             }
-
+            //condizione vittoria contro demogorgone
             if (vitaDemo == 0)
             {
                 Console.WriteLine("Hai sconfitto il demogorgone!");
@@ -138,18 +146,21 @@ namespace gioco_stranger_things
         // funzione eventi casella
         static void EventiCasella(string luogo, ref int vita, ref int resistenza, ref int pMappa, ref int armi, ref int cure, ref bool cavalcatura, ref bool gioco)
         {
+            // evento trova cura
             if (luogo == "ospedale di Hawkins" || luogo == "casa di Hopper" || luogo == "casa dei Byers" || luogo == "Pennhurst Mental Hospital")
             {
                 cure++;
                 Console.WriteLine("Tu: una pozione curativa, proprio quello che mi serve!!");
 
             }
+            // evento trova arma
             else if (luogo == "casa dei Wheeler" || luogo == "Hawkins Middle School" || luogo == "Hawkins Police Department" || luogo == "laboratorio russo")
             {
                 armi++;
                 Console.WriteLine("hai trovato un'arma!");
                 Console.WriteLine("Tu: Perfetto, sempre bene avere un'arma");
             }
+            // evento incontro Dustin
             else if (luogo == "Lover’s Lake")
             {
                 Console.WriteLine("hai incontrato Dustin");
@@ -168,7 +179,7 @@ namespace gioco_stranger_things
                     Console.WriteLine("Tu: arrivederci Dustin, per ora grazie!!");
                 }
             }
-
+            // evento resistenza
             else if (luogo == "Hawkins Public Library")
             {
                 Console.WriteLine("hai trovato un libro che ti da dei trucchi per avere maggiore resistenza");
@@ -176,6 +187,7 @@ namespace gioco_stranger_things
                 Console.WriteLine("Tu: Un libro interessante... sembra aumentare la mia resistenza!");
                 Console.WriteLine("Tu: wow! mi e salita di 20!! Resistenza: " + resistenza);
             }
+            // evento cibo
             else if (luogo == "Bradley's Big Buy")
             {
                 Console.WriteLine("Tu: mhh del cibo!!");
@@ -183,6 +195,7 @@ namespace gioco_stranger_things
                 Console.WriteLine("hai mangiato ora hai " + vita + " di vita");
 
             }
+            // evento trovi cavalcatura
             else if (luogo == "Palace Arcade" || luogo == "Starcourt Mall" || luogo == "Hawkins Middle School")
             {
                 if (cavalcatura == false)
@@ -203,6 +216,7 @@ namespace gioco_stranger_things
                     }
                 }
             }
+            // evento trovi Steve
             else if (luogo == "Radio Shack")
             {
                 Console.WriteLine("hai incontrato Steve");
@@ -221,7 +235,7 @@ namespace gioco_stranger_things
                 }
 
             }
-
+            // eventi demogorgone
             else if (luogo == "Forest Hills Trailer Park" || luogo == "casa di Victor Creel" || luogo == "Hawkins National Laboratory" || luogo == "Sottosopra")
             {
                 Console.WriteLine("hai incontrato un demogorgone");
@@ -236,11 +250,12 @@ namespace gioco_stranger_things
                     gioco = false;
                 }
             }
+            // evento finale Vecna
             else if (luogo == "cava di Vecna")
             {
                 Console.WriteLine("Vecna: sei arrivato fin qui... vediamo se sei degno");
                 Console.WriteLine("######################################################");
-                Console.WriteLine("##         LA BESTIA DELL'ABISSO (ASCII)            ##");
+                Console.WriteLine("##                   Vecna                          ##");
                 Console.WriteLine("######################################################");
                 Console.WriteLine("");
                 Console.WriteLine("string creature = @\"");
@@ -264,14 +279,17 @@ namespace gioco_stranger_things
                 Console.WriteLine("Console.WriteLine(creature);");
                 Console.WriteLine("");
                 Console.WriteLine("######################################################");
+                //condizione vittoria contro Vecna
                 if (armi > 0 && vita > 70 && resistenza > 40)
                 {
                     Console.WriteLine("Tu: ci sono riuscito! Ho sconfitto Vecna!");
                     Console.WriteLine("Vecna: nooooooo!");
                     Console.WriteLine("hai sconfitto Vecna!!  Hai vintoo!!!");
                 }
+                //condizione sconfitta contro Vecna
                 else
                 {
+
                     Console.WriteLine("Tu: non ce la faccio...");
                     Console.WriteLine("Vecna: la tua debolezza ti condanna");
                     Console.WriteLine("sei morto");
@@ -287,6 +305,7 @@ namespace gioco_stranger_things
 
         static void Main()
         {
+            // iistruzioni di gioco
             Console.WriteLine("--------------------------------------------------");
             Console.WriteLine("benvenuto nel mondo di stranger things!");
             Console.WriteLine("in questo gioco ti muoverai sulla mappa, troverai oggetti e combatterai mostri.");
@@ -306,7 +325,7 @@ namespace gioco_stranger_things
             int vita = 100, resistenza = 100, armi = 0, cure = 0, pMappa = 0, dannoBase = 10;
             bool cavalcatura = false, gioco = true;
 
-
+            // scelta personaggio
             Console.WriteLine("scegli il personaggio:");
             Console.WriteLine("1- Undici (+5 danno)");
             Console.WriteLine("2- Mike (+1 armi)");
@@ -314,27 +333,30 @@ namespace gioco_stranger_things
 
             int sceltaPersonaggio = Convert.ToInt32(Console.ReadLine());
 
-
+            //scelta Undici
             if (sceltaPersonaggio == 1)
             {
 
                 dannoBase = dannoBase + 5;
             }
+            //scelta Mike
             else if (sceltaPersonaggio == 2)
             {
 
                 armi++;
             }
+            //scelta Hopper
             else if (sceltaPersonaggio == 3)
             {
 
-                vita += 50;
+                vita = vita + 50;
             }
 
             int sceltaTurno;
 
             do
             {
+                //scelte ogni turno
                 Console.WriteLine("cosa vuoi fare?");
                 Console.WriteLine("1 - Avanza");
                 Console.WriteLine("2 - Mostra status");
@@ -343,6 +365,7 @@ namespace gioco_stranger_things
                 Console.WriteLine("5 - Esci");
 
                 sceltaTurno = Convert.ToInt32(Console.ReadLine());
+                //scelta Avanza
                 if (sceltaTurno == 1)
                 {
                     int tiro = TiroDado(pMappa);
@@ -362,7 +385,8 @@ namespace gioco_stranger_things
                     }
                     Console.WriteLine("ti sei mosso di " + tiro + " caselle, sei in " + mappa[pMappa]);
                     EventiCasella(mappa[pMappa], ref vita, ref resistenza, ref pMappa, ref armi, ref cure, ref cavalcatura, ref gioco);
-
+                    
+                    //condizione per uscire dal gioco
 
                     if (gioco == false)
                     {
@@ -374,15 +398,17 @@ namespace gioco_stranger_things
                 }
 
 
-
+                //scelta mostra status
                 else if (sceltaTurno == 2)
                 {
                     Status(vita, resistenza, dannoBase, pMappa, mappa);
                 }
+                //scelta mostra inventario
                 else if (sceltaTurno == 3)
                 {
                     Inventario(armi, cure, cavalcatura);
                 }
+                //scelta usa cura
                 else if (sceltaTurno == 4)
                 {
                     if (cure > 0)
@@ -403,6 +429,7 @@ namespace gioco_stranger_things
                         Console.WriteLine("non hai pozioni curative");
                     }
                 }
+                //scelta abbandona gioco
                 else if (sceltaTurno == 5)
                 {
                     gioco = false;
