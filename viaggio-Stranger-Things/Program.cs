@@ -201,8 +201,8 @@ namespace gioco_stranger_things
                 if (cavalcatura == false)
                 {
                     Console.WriteLine("Tu: oh cavoli, una cavalcatura!");
-                    Console.WriteLine("hai usato la cavalcatura, il prossimo tiro avanzerai di una casella in piu");
-                    Console.WriteLine(" vuoi usarla subito? si o no");
+                    Console.WriteLine("il prossimo tiro avanzerai di una casella in piu");
+                    Console.WriteLine(" la usi o la lasci");
                     string scelta = Console.ReadLine();
 
                     if (scelta == "si")
