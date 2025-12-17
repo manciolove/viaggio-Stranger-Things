@@ -367,14 +367,14 @@ namespace gioco_stranger_things
                 if (sceltaTurno == 1)
                 {
                     int tiro = TiroDado(pMappa);
-
+                    pMappa = pMappa + tiro;
                     if (cavalcatura == true)
                     {
                         tiro++;
                         cavalcatura = false;
                     }
 
-                    pMappa = pMappa + tiro;
+                    
 
                     if (pMappa >= mappa.Length - 1)
                     {
